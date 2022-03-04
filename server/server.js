@@ -18,9 +18,9 @@ const server = http
       response.write(fs.readFileSync(__dirname + "/index.html"));
       response.end();
 
-      // if is POSTing 
+      // if is POSTing
     } else if (request.method === "POST" && request.url === "/sayHi") {
-      fs.appendFileSync("hi_log.txt", "Somebody said hi.\n");
+      fs.appendFileSync("./server/hi_log.txt", "Somebody said hi.\n");
       response.write("hi back to you!");
       response.end();
 
@@ -32,7 +32,7 @@ const server = http
       });
       request.on("end", () => {
         body = Buffer.concat(body).toString();
-        fs.appendFileSync("hi_log.txt", body + "\n");
+        fs.appendFileSync("./server/hi_log.txt", body + "\n");
         let responseMessage = "good morning";
         if (body === "hello") responseMessage = "hello there!";
         if (body === "what's up") responseMessage = "the sky";
